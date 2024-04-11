@@ -12,7 +12,7 @@ class Empresa{
     private $colObjVentasHechas;
 
     public function __construct($nomEmpresa, $adress, $arrObjCliente, $arrObjMotos, $arrColObjVentas){
-        $this->denominacion = $nomEmpresa;+
+        $this->denominacion = $nomEmpresa;
         $this->direccion = $adress;
         $this->colObjClientes = $arrObjCliente;
         $this->colObjMotos = $arrObjMotos;
@@ -85,6 +85,7 @@ class Empresa{
 
     public function retornarMoto($codigoMoto){
         $i=0;
+        
         $motoBuscada= $this->colObjMotos[$i]->getCodigo();
         while($motoBuscada <> $codigoMoto ){
             $refMoto = null;
@@ -94,27 +95,22 @@ class Empresa{
         if ($motoBuscada == $codigoMoto){
             $refMoto = $motoBuscada;
         }
-        return $refMoto;
+    return $refMoto;
     }
     public function registrarVenta($colCodigosMotos, $objCliente){
-        $colObjMotos = 
         $apto = $objCliente->getBaja();
-        if($apto){
-         $i=0;
-             foreach ($colCodigosMotos as $unCodigo){
-             $objMoto_venta = $colObjMotos[$i]->getCodigo();
-                 if ($unCodigo == $objMoto_venta ){
-                 array_push($colObjMotosV, $objMoto_venta);
-                 $esta_dispo = $colObjMotos[$i]->getEstadoMoto();
-                 $suAniio = $colObjMotos[$i]->getAnioMoto();
-                 $suCosto = $colObjMotos[$i]->getCosto();
-                 }
-             $i++;    
-            }    
+        $num_venta = 1;
+        foreach ($colCodigosMotos as $unCodigo => $value) {
+            $codObjMotoVenta = $this->retornarMoto($unCodigo);
+            if($codObjMotoVenta->getEstadoMoto && $apto){
+                $this->setColObjVentasHechas($codObjMotoVenta);
+                //datos de la moto vendida
+                //nueva instancia de la clase venta
+                $num_venta++;
+                $monto = $codObjMotoVenta->getPrecio; 
+                $transaccion = new Venta($num_venta, "14/4", $objCliente, array_push($colObjMotosV, $codObjMotoVenta),$monto);
+            }
         }
-        $importeFinal = $colObjMotos->darPrecioVenta($esta_dispo,$suAniio, $suCosto);
-
-     return $importeFinal;
+    return $codObjMotoVenta;    
     }
-
 }

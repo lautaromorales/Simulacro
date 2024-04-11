@@ -19,6 +19,7 @@ $colObjMotos[$i+2] = new Moto(13, 999900, "Zanrlla Patagonian Eagle 250", 55, fa
 $colObjMotos[3] = new Moto(0, 0, "Null", 0, null, 0);
 //valor de $i = 2
 $colObjMotosV = array ();
+$colObjMotosV = new Moto (14, 545000, "Honda 125", 90, true, 2020);
 $colObjVentasHechas = array();
 
 $objEmpresa =new Empresa("Alta gama", "Av. Argentina 123", $colObjCliente, $colObjMotos,$colObjVentasHechas);
@@ -28,8 +29,8 @@ $colCodigosMoto[1]= $colObjMotos[1]->getCodigo();
 $colCodigosMoto[2]= $colObjMotos[2]->getCodigo();
 $colCodigosMoto[3]= $colObjMotos[2]->getCodigo();
 
-$transaccion = $this->registrarVenta($colCodigosMoto, $objCliente2);
-$transaccion = $this->registrarVenta($colCodigosMoto[3], $objCliente2);
+$transaccion = $objEmpresa->registrarVenta($colCodigosMoto, $objCliente2);
+$transaccion = $objEmpresa->registrarVenta($colCodigosMoto[3], $objCliente2);
 echo $transaccion;
 
 $tipo_Id = $objCliente1->getTipoDoc();
