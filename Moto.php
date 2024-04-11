@@ -63,4 +63,15 @@ class Moto{
         "\n Porcentaje de incremento anual: ".$this->getPorcentaje()."\n Estado para la venta: ".$this->getEstadoMoto().
         "\n Año de Fabricación: ".$this->getAnioMoto();
     }
+
+    public function darPrecioVenta($disponible, $anioMoto, $costo){
+        $_compra = $costo;
+        $anio = 2024 - $anioMoto;
+        if($disponible){
+            $_venta = $_compra + $_compra*($anio*$por_inc_anual);
+        }else{
+            $_venta = -1;
+        }
+        return $_venta;
+    }
 }

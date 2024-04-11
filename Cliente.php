@@ -60,7 +60,7 @@ class CLiente{
         return "Nombre: ".$this->getNombre()."\n Apellido: ".$this->getApellido()."\n Estado ".$estadoCliente.
         "\n Número de documento: ".$this->getNumDoc()."\n Tipo de documento ".$this->getTipoDoc();       
     }
+    
 
 }
 
-echo $this->getNombre();
