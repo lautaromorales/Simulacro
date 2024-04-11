@@ -1,4 +1,7 @@
 <?php
+include_once 'Moto.php';
+include_once 'Empresa.php';
+include_once 'Venta.php';
 //CLASE CLIENTE
 
 class CLiente{
@@ -57,7 +60,7 @@ class CLiente{
         }else{
             $estadoCliente = "Dado de baja";
         }
-        return "Nombre: ".$this->getNombre()."\n Apellido: ".$this->getApellido()."\n Estado ".$estadoCliente.
+        return "Nombre: ".$this->getNombre()."\n Apellido: ".$this->getApellido()."\n Estado: ".$estadoCliente.
         "\n Número de documento: ".$this->getNumDoc()."\n Tipo de documento ".$this->getTipoDoc();       
     }
     

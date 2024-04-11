@@ -1,4 +1,7 @@
 <?php
+include_once 'Cliente.php';
+include_once 'Empresa.php';
+include_once 'Venta.php';
 //CLASE MOTO
 class Moto{
     private $codigo;
@@ -64,9 +67,10 @@ class Moto{
         "\n Año de Fabricación: ".$this->getAnioMoto();
     }
 
-    public function darPrecioVenta($disponible, $anioMoto, $costo){
+    public function darPrecioVenta($disponible, $anioMoto, $costo){//disponible u objCliente?
         $_compra = $costo;
         $anio = 2024 - $anioMoto;
+        $por_inc_anual = $this->por_inc_anual;
         if($disponible){
             $_venta = $_compra + $_compra*($anio*$por_inc_anual);
         }else{

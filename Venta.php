@@ -1,17 +1,20 @@
 <?php
+include_once 'Moto.php';
+include_once 'Cliente.php';
+include_once 'Empresa.php';
 //CLASE VENTA
 class Venta{
     private $numeroVenta;
     private $fechaVenta;
     private $colObjCliente;
-    private $colObjMoto;
+    private $colObjMotoV;
     private $precioFinal;
     //MÉTODO MAGICO CONSTRUCTOR
     public function __construct($numVenta, $dateVenta, $instCliente, $arrInstMoto, $montoFinal){
         $this->numeroVenta = $numVenta;
         $this->fechaVenta = $dateVenta;
         $this->colObjCliente = $instCliente;
-        $this->colObjMoto = $arrInstMoto;
+        $this->colObjMotoV = $arrInstMoto;
         $this->precioFinal = $montoFinal;
     }
     //método magico "get" para cada tributo de la clase
@@ -24,8 +27,8 @@ class Venta{
     public function getColObjCliente(){
         return $this->colObjCliente;
     }
-    public function getColObjMoto(){
-        return $this->colObjMoto;
+    public function getColObjMotoV(){
+        return $this->colObjMotoV;
     }
     public function getPrecioFinal(){
         return $this->precioFinal;
@@ -43,7 +46,7 @@ class Venta{
         $this->colObjCliente=$p_objCliente;
     }
     public function setObjMoto($p_ObjMoto){
-        $this->colObjMoto =$p_ObjMoto;
+        $this->colObjMotoV =$p_ObjMoto;
     }
     public function setPrecioFinal($p_Precio){
         $this-> precioFinal=$p_Precio;
@@ -52,7 +55,7 @@ class Venta{
     //Metodo magico __toString
     public function __toString()
     {
-        echo "Numero: ".$this->getNumVenta()."\nFecha de la venta: ".$this->getFecha()."\nCliente: ".$this->getColObjCliente()."\n La moto: ".$this->getColObjMoto()."\n El precio final es: ".$this->getPrecioFinal();
+        echo "Numero: ".$this->getNumVenta()."\nFecha de la venta: ".$this->getFecha()."\nCliente: ".$this->getColObjCliente()."\n La moto: ".$this->getColObjMotoV()."\n El precio final es: ".$this->getPrecioFinal();
     }
 
     public function incorporarMoto($objMoto){
@@ -60,9 +63,13 @@ class Venta{
         if ($siSeVende){
             //INCORPORAR MOTO AL ARRAY
             //ACTUALIZAR VAR. INS. 
+            array_push($colObjMotosV, $objMoto);
+            //Seteo del precio final
             //$precioInco es el precio de venta de la moto despues incorporarla al array.
-            $incorpora = new Moto($objMoto);
-            $precioInco = darPrecioVenta($siSeVende);
+            $j = count($colObjMotosV);
+            $v_anio = $objMoto->getAnioMoto();
+            $v_costo = $objMoto->getCosto();
+            $precioInco = $colObjMotosV[$j] ->darPrecioVenta($siSeVende, $v_anio, $v_costo);
             $this->setPrecioFinal($precioInco);
         }
     }
